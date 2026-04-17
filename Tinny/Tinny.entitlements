@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- App Sandbox is required for Mac Catalyst and macOS -->
+    <key>com.apple.security.app-sandbox</key>
+    <true/>
+    
+    <!-- In-App Purchase entitlement -->
+    <key>com.apple.developer.in-app-payments</key>
+    <array>
+        <string>merchant.com.es.hourlychime</string>
+    </array>
+    
+    <!-- Push notifications (if needed in future) -->
+    <!-- <key>aps-environment</key> -->
+    <!-- <string>development</string> -->
+</dict>
+</plist>

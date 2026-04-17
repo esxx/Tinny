@@ -1,0 +1,12 @@
+{
+  "identifier": "TinnyConfiguration",
+  "name": "Tinny Store Configuration",
+  "products": [
+    {
+      "type": "nonConsumable",
+      "id": "premium",
+      "name": "Tinny Premium",
+      "description": "Unlock all sounds, speaking clock, custom intervals, and day scheduling"
+    }
+  ]
+}

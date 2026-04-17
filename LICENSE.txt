@@ -1,0 +1,7 @@
+Copyright 2026 Eldar Shaidullin. All rights reserved.
+
+Source code is shared for reference and learning purposes only.
+No permission is granted to use, copy, modify, merge, publish,
+distribute, sublicense, or sell copies of this software or any
+derivative works, in whole or in part, without explicit written
+permission from the author.

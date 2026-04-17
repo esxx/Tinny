@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support — Tinny</title>
+    <style>
+        /* Apple HIG-inspired design */
+        :root {
+            --system-background: #ffffff;
+            --secondary-system-background: #f2f2f7;
+            --tertiary-system-background: #ffffff;
+            --label: #000000;
+            --secondary-label: #3c3c43;
+            --tertiary-label: #3c3c43;
+            --link: #007aff;
+            --separator: #c6c6c8;
+            --system-blue: #007aff;
+            --system-green: #34c759;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --system-background: #000000;
+                --secondary-system-background: #1c1c1e;
+                --tertiary-system-background: #2c2c2e;
+                --label: #ffffff;
+                --secondary-label: #ebebf5;
+                --tertiary-label: #ebebf5;
+                --link: #0a84ff;
+                --separator: #38383a;
+                --system-blue: #0a84ff;
+                --system-green: #30d158;
+            }
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.47059;
+            font-weight: 400;
+            letter-spacing: -0.022em;
+            background-color: var(--system-background);
+            color: var(--label);
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .container {
+            max-width: 734px;
+            margin: 0 auto;
+            padding: 0 22px;
+        }
+        
+        header {
+            padding: 40px 0 32px;
+            border-bottom: 1px solid var(--separator);
+            margin-bottom: 32px;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            color: var(--link);
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 400;
+            margin-bottom: 24px;
+        }
+        
+        .back-button:hover {
+            text-decoration: underline;
+        }
+        
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.125;
+            letter-spacing: -0.015em;
+            margin: 0 0 8px;
+            color: var(--label);
+        }
+        
+        .subtitle {
+            font-size: 17px;
+            line-height: 1.47059;
+            color: var(--secondary-label);
+            margin: 0 0 24px;
+        }
+        
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1.16667;
+            letter-spacing: 0.009em;
+            margin: 32px 0 24px;
+            color: var(--label);
+        }
+        
+        .faq-section {
+            margin-bottom: 40px;
+        }
+        
+        .faq-item {
+            background-color: var(--secondary-system-background);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 1px solid transparent;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+        
+        .faq-item:hover {
+            border-color: var(--separator);
+            background-color: var(--tertiary-system-background);
+        }
+        
+        .faq-question {
+            font-size: 17px;
+            font-weight: 600;
+            line-height: 1.47059;
+            margin: 0 0 12px;
+            color: var(--label);
+        }
+        
+        .faq-answer {
+            font-size: 17px;
+            line-height: 1.47059;
+            color: var(--secondary-label);
+            margin: 0;
+        }
+        
+        .faq-answer ol,
+        .faq-answer ul {
+            margin: 12px 0;
+            padding-left: 20px;
+        }
+        
+        .faq-answer li {
+            margin-bottom: 8px;
+        }
+        
+        .contact-section {
+            background-color: var(--secondary-system-background);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 48px 0;
+        }
+        
+        .contact-title {
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.4;
+            margin: 0 0 16px;
+            color: var(--label);
+        }
+        
+        .contact-description {
+            font-size: 17px;
+            line-height: 1.47059;
+            color: var(--secondary-label);
+            margin: 0 0 24px;
+        }
+        
+        .contact-info {
+            font-size: 15px;
+            line-height: 1.47059;
+            color: var(--secondary-label);
+        }
+        
+        .contact-info strong {
+            font-weight: 600;
+            color: var(--label);
+        }
+        
+        .note-box {
+            background-color: var(--system-background);
+            border: 1px solid var(--separator);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 20px;
+            font-size: 15px;
+            line-height: 1.47059;
+            color: var(--secondary-label);
+        }
+        
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--separator);
+            margin-top: 60px;
+            text-align: center;
+            color: var(--tertiary-label);
+            font-size: 15px;
+            line-height: 1.47059;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 16px;
+        }
+        
+        .footer-links a {
+            color: var(--link);
+            text-decoration: none;
+            font-size: 15px;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 734px) {
+            .container {
+                padding: 0 16px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            h2 {
+                font-size: 22px;
+            }
+            
+            .contact-section {
+                padding: 24px;
+            }
+            
+            .faq-item {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-button">← Back to Home</a>
+            <h1>Support</h1>
+            <div class="subtitle">Frequently asked questions and contact information</div>
+        </header>
+        
+        <section class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">How do I enable hourly chimes?</div>
+                <div class="faq-answer">
+                    <p>The app will ask for notification permission when you first open it. If you denied permission, you can enable it in:</p>
+                    <p><strong>iOS Settings → Notifications → Tinny → Allow Notifications</strong></p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How do I change the chime sound?</div>
+                <div class="faq-answer">
+                    <p>Open the app and tap on the current sound name. You'll see a list of available sounds to choose from.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">The app is not making sound when notifications arrive</div>
+                <div class="faq-answer">
+                    <p>Check these settings:</p>
+                    <ol>
+                        <li>Make sure your device isn't on silent mode (check the physical switch)</li>
+                        <li>Check iOS Settings → Sounds & Haptics → ensure sounds are enabled</li>
+                        <li>Verify the app has notification permission with sound enabled</li>
+                        <li>Try restarting the app</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What does Tinny Premium include?</div>
+                <div class="faq-answer">
+                    <p>Tinny Premium unlocks all built-in sounds, the speaking clock, chimes every 15 or 30 minutes, and weekday/weekend scheduling. The free version includes hourly chimes with a selection of built-in sounds.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">I purchased Tinny Premium but it's not activated</div>
+                <div class="faq-answer">
+                    <p>Try these steps:</p>
+                    <ol>
+                        <li>Restart the app</li>
+                        <li>Check your internet connection</li>
+                        <li>Go to iOS Settings → [Your Name] → Media & Purchases → View Account → Purchase History to verify the purchase</li>
+                        <li>Contact Apple Support for purchase issues</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Will the app work when my device is locked?</div>
+                <div class="faq-answer">
+                    <p>Yes! Notifications will appear and play sounds even when your device is locked, as long as notification permissions are enabled.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Does the app work in Do Not Disturb mode?</div>
+                <div class="faq-answer">
+                    <p>No, notifications will be silenced when Do Not Disturb is active. You'll see the notifications when Do Not Disturb is turned off.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How do I restore my Tinny Premium purchase?</div>
+                <div class="faq-answer">
+                    <p>Open the app, go to the Tinny Premium upgrade section, and look for a "Restore Purchases" button. If you don't see it, try restarting the app.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="contact-section">
+            <h2 class="contact-title">Contact Support</h2>
+            <p class="contact-description">If you couldn't find an answer to your question, please contact us:</p>
+            
+            <div class="contact-info">
+                <p><strong>Email:</strong> [Support email will appear here after App Store submission]</p>
+                <p><strong>App Store:</strong> Contact through the App Store listing once published</p>
+            </div>
+            
+            <div class="note-box">
+                <p><strong>Note:</strong> For purchase or billing issues, please contact Apple Support as they handle all transactions.</p>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2026 Tinny. All rights reserved.</p>
+            
+            <div class="footer-links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="index.html">Home</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
