@@ -1,0 +1,17 @@
+{
+  "identifier": "TinnyConfiguration",
+  "name": "Tinny Store Configuration",
+  "simulateStoreKit": true,
+  "products": [
+    {
+      "type": "nonConsumable",
+      "id": "premium",
+      "name": "Tinny Premium",
+      "description": "Unlock all sounds, speaking clock, custom intervals, and day scheduling",
+      "price": 2.99,
+      "currency": "USD",
+      "displayPrice": "$2.99",
+      "locale": "en_US"
+    }
+  ]
+}

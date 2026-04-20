@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tinny — Hourly Chimes & Speaking Clock</title>
+    <style>
+        /* Apple HIG-inspired design */
+        :root {
+            --system-background: #ffffff;
+            --secondary-system-background: #f2f2f7;
+            --tertiary-system-background: #ffffff;
+            --label: #000000;
+            --secondary-label: #3c3c43;
+            --tertiary-label: #3c3c43;
+            --link: #007aff;
+            --separator: #c6c6c8;
+            --system-blue: #007aff;
+            --system-indigo: #5856d6;
+            --system-gray: #8e8e93;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --system-background: #000000;
+                --secondary-system-background: #1c1c1e;
+                --tertiary-system-background: #2c2c2e;
+                --label: #ffffff;
+                --secondary-label: #ebebf5;
+                --tertiary-label: #ebebf5;
+                --link: #0a84ff;
+                --separator: #38383a;
+                --system-blue: #0a84ff;
+                --system-indigo: #5e5ce6;
+                --system-gray: #8e8e93;
+            }
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.47059;
+            font-weight: 400;
+            letter-spacing: -0.022em;
+            background-color: var(--system-background);
+            color: var(--label);
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .container {
+            max-width: 734px;
+            margin: 0 auto;
+            padding: 0 22px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 60px 0 40px;
+            border-bottom: 1px solid var(--separator);
+            margin-bottom: 40px;
+        }
+        
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 26%;
+            margin: 0 auto 20px;
+            object-fit: cover;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 40px;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.015em;
+            margin: 0 0 8px;
+            color: var(--label);
+        }
+        
+        .tagline {
+            font-size: 21px;
+            line-height: 1.381;
+            font-weight: 400;
+            letter-spacing: 0.011em;
+            color: var(--secondary-label);
+            margin: 0 0 24px;
+        }
+        
+        .download-badge {
+            display: inline-block;
+            margin-top: 20px;
+        }
+        
+        .download-badge img {
+            height: 40px;
+        }
+        
+        .section {
+            margin-bottom: 48px;
+        }
+        
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.21429;
+            letter-spacing: 0.007em;
+            margin: 0 0 16px;
+            color: var(--label);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+        
+        .feature-card {
+            background-color: var(--secondary-system-background);
+            border-radius: 14px;
+            padding: 24px;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-2px);
+            background-color: var(--tertiary-system-background);
+        }
+        
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+        
+        .feature-title {
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.4;
+            margin: 0 0 8px;
+            color: var(--label);
+        }
+        
+        .feature-description {
+            font-size: 17px;
+            line-height: 1.47059;
+            color: var(--secondary-label);
+            margin: 0;
+        }
+        
+        .screenshots {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .screenshots img {
+            width: 240px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 734px) {
+            .screenshots img {
+                width: 160px;
+            }
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 48px 0;
+            background-color: var(--secondary-system-background);
+            border-radius: 20px;
+            margin: 48px 0;
+        }
+        
+        .cta-title {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.125;
+            margin: 0 0 16px;
+            color: var(--label);
+        }
+        
+        .cta-description {
+            font-size: 20px;
+            line-height: 1.4;
+            color: var(--secondary-label);
+            margin: 0 0 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--system-blue);
+            color: white;
+            font-size: 17px;
+            font-weight: 600;
+            line-height: 1.47059;
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .button:hover {
+            background-color: var(--system-indigo);
+            transform: scale(1.02);
+            text-decoration: none;
+        }
+        
+        .button-secondary {
+            background-color: transparent;
+            color: var(--system-blue);
+            border: 1px solid var(--separator);
+        }
+        
+        .button-secondary:hover {
+            background-color: var(--secondary-system-background);
+            border-color: var(--system-blue);
+        }
+        
+        .links {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 32px;
+        }
+        
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--separator);
+            margin-top: 60px;
+            text-align: center;
+            color: var(--tertiary-label);
+            font-size: 15px;
+            line-height: 1.47059;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 16px;
+        }
+        
+        .footer-links a {
+            color: var(--link);
+            text-decoration: none;
+            font-size: 15px;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 734px) {
+            .container {
+                padding: 0 16px;
+            }
+            
+            header {
+                padding: 40px 0 32px;
+            }
+            
+            .app-icon {
+                width: 100px;
+                height: 100px;
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
+            
+            .tagline {
+                font-size: 18px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .cta-title {
+                font-size: 28px;
+            }
+            
+            .cta-description {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="app-icon.png" class="app-icon" alt="Tinny App Icon">
+            <h1>Tinny</h1>
+            <div class="tagline">Hear the hour. Own your day.</div>
+            
+            <div class="download-badge">
+                <!-- App Store badge will be added when app is published -->
+                <div style="display: inline-block; background: #000; color: #fff; padding: 12px 24px; border-radius: 12px; font-weight: 600;">
+                    Coming soon to App Store
+                </div>
+            </div>
+        </header>
+        
+        <section class="section">
+            <h2 class="section-title">Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⏰</div>
+                    <h3 class="feature-title">Hourly Chimes</h3>
+                    <p class="feature-description">Gentle notifications every hour to keep you mindful of time — even on the lock screen.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔊</div>
+                    <h3 class="feature-title">Speaking Clock</h3>
+                    <p class="feature-description">Hear the time spoken aloud using your system voice. No screen needed.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎵</div>
+                    <h3 class="feature-title">Multiple Sounds</h3>
+                    <p class="feature-description">Choose from built-in chimes or bring your own audio file.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3 class="feature-title">Custom Schedule</h3>
+                    <p class="feature-description">Chime every 15 or 30 minutes, and limit to weekdays or weekends only.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">Complete Privacy</h3>
+                    <p class="feature-description">No data collection. No accounts. Runs entirely on your device.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💳</div>
+                    <h3 class="feature-title">One-Time Purchase</h3>
+                    <p class="feature-description">Unlock everything with a single purchase. No subscriptions, ever.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">Screenshots</h2>
+            <div class="screenshots">
+                <img src="screenshot1.png" alt="Tinny main screen">
+                <img src="screenshot2.png" alt="Tinny settings">
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2 class="cta-title">Start Hearing Your Hours</h2>
+            <p class="cta-description">Tinny helps you stay present with gentle chimes and a speaking clock. Pick your sound, set your schedule, and let time speak for itself.</p>
+            
+            <div class="links">
+                <a href="privacy-policy.html" class="button">Privacy Policy</a>
+                <a href="support.html" class="button button-secondary">Support & FAQ</a>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2026 Tinny. All rights reserved.</p>
+            <p>This is the support website for the Tinny iOS app.</p>
+            
+            <div class="footer-links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="support.html">Support</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
