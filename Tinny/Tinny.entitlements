@@ -9,7 +9,7 @@
     <!-- In-App Purchase entitlement -->
     <key>com.apple.developer.in-app-payments</key>
     <array>
-        <string>merchant.com.es.hourlychime</string>
+        <string>merchant.ee.exx.hourlychime</string>
     </array>
     
     <!-- Push notifications (if needed in future) -->

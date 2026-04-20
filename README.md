@@ -1,4 +1,4 @@
-# Tinny — Hourly Chimes & Speaking Clock
+# Tinny: Hourly Chime & Bell
 
 Gentle hourly chimes and a speaking clock for iOS. Hear the hour, own your day.
 
